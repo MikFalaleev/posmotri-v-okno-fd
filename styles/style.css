@@ -8,16 +8,6 @@ html {
   block-size: 100%;
 }
 
-.page {
-  inline-size: 1200px;
-  block-size: 100%;
-  margin: auto;
-  color: #fff;
-  font-family: 'Fira Sans Condensed', sans-serif;
-  font-size: 18px;
-  background-color: #1b1919;
-}
-
 h1,
 h2,
 h3,
@@ -37,6 +27,11 @@ ol {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Кастомный скроллбар */
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
@@ -47,5 +42,369 @@ ol {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
+}
+
+/* Стили для блока всей страницы */
+.page {
+  inline-size: 1200px;
+  block-size: 100vh;
+  margin: 0 auto;
+  color: #fff;
+  font-family: "Fira Sans Condensed", sans-serif;
+  font-size: 18px;
+  background-color: #1b1919;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Блок с основным контентом */
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  column-gap: 30px;
+  inline-size: 1140px;
+}
+
+/* Левый блок с результатами поиска */
+
+/* Блок с видео и формой*/
+.result {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  max-width: 711px;
+}
+
+/* Контейнер с видео */
+.result__video-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Демонстрируемое видео */
+.result__video-container video {
+  object-fit: cover;
+  block-size: 386px;
+  inline-size: 711px;
+  cursor: pointer;
+}
+
+/* Строка форм и кнопка под основным видио */
+.search-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-self: stretch;
+  justify-content: space-between;
+  align-items: end;
+  column-gap: 0px;
+}
+
+/* Поля формы */
+.search-form__fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+  width: 100%;
+  border: none;
+  block-size: auto;
+}
+
+/* Модификация для второго поля формы */
+.search-form__fieldset:nth-of-type(2) {
+  padding-left: 30px;
+  margin-bottom: 4px;
+}
+
+/* Мутная тема для скринридеров */
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Заголовок формы */
+.search-form__fieldset-title {
+  font-family: "Fira Sans Condensed", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+/* Поле текстового ввода формы */
+.search-form__label {
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  column-gap: 5px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* Декоратор тестового поля */
+.search-form__textfield {
+  border: none;
+  inline-size: 100%;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  padding-block: 1px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  appearance: none;
+  letter-spacing: -0.013em; /* костыли!!! не понимаю, почему расстояния от запятой отличается от макета. пришлось решить так. */
+}
+
+/* Плейсхолдер текстового поля */
+.search-form__textfield::placeholder {
+  color: #fff;
+  opacity: 0.7;
+}
+
+/* Чекбоксы */
+.search-form__checkbox-list {
+  display: flex;
+  column-gap: 15px;
+}
+
+/* Метка чекбокса */
+.search-form__label {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  cursor: pointer;
+}
+
+/* Скрытый чекбокс */
+.search-form__pseudo-checkbox {
+  inline-size: 19px;
+  block-size: 19px;
+  border: 1px solid #fff;
+  display: inline-block;
+  padding: 1px;
+}
+
+/* Внутренняя заливка чекбокса */
+.search-form__pseudo-checkbox::after {
+  content: "";
+  display: block;
+  background-color: #fff;
+  inline-size: 100%;
+  block-size: 100%;
+  opacity: 0;
+}
+
+/* Показать заливку при выборе чекбокса */
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::after {
+  opacity: 1;
+}
+
+/* кнопка "Найти" */
+.search-form__submit-button {
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  padding: 4px 32px;
+  margin-left: 40px;
+  font-family: "Fira Sans Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+/* Правый блок с выбором видео */
+
+/* Блок с выбором ролика */
+.content__details {
+  display: flex;
+  flex-direction: column;
+  row-gap: 26px;
+  justify-content: space-between;
+  inline-size: 399px;
+  padding-top: 0;
+}
+
+/* Заголовок страницы */
+.title {
+  font-family: "Oswald", sans-serif;
+  font-style: normal;
+  font-size: 75px;
+  line-height: 94%;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 700;
+  transform: translateY(5px);
+}
+
+/* Акцентный текст загаловка */
+.content__accent {
+  color: #545050;
+}
+
+/* Список роликов */
+.content__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  margin-bottom: 30px;
+}
+
+/* Контейнер для скролла */
+.content__list-container {
+  block-size: 298px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 3px;
+}
+
+/* Элемент списка роликов */
+.content__list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline: 3px;
+}
+
+/* Карточка ролика */
+.content__video-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+/* Контейнер с описанием ролика */
+.content__video-card-description-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  inline-size: 220px;
+}
+
+/* Заголовок ролика */
+.content__video-card-title {
+  display: block;
+  max-width: 196px;
+  font-family: "Oswald";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 100%;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff;
+  margin-top: 3px;
+}
+
+/* Описание ролика */
+.content__video-card-description {
+  width: 196px; /* потом проверить */
+  line-height: 16px;
+  font-family: "Fira Sans Condensed";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #fff;
+  margin-top: 4px;
+}
+
+/* Превью ролика */
+.content__video-card-thumbnail {
+  block-size: 103px;
+  inline-size: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Кнопка "Еще видео" */
+.more-button {
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  font-family: "Fira Sans Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding-block: 5px;
+  padding-inline: 32px;
+  align-items: center;
+  margin-inline: 4px;
+}
+
+/* Cостояния элементов */
+
+.search-form__checkbox-list .search-form__label:hover .search-form__label-text {
+  text-decoration: underline;
+}
+
+.search-form__label:has(.search-form__textfield:focus-visible),
+.search-form__label:has(.search-form__checkbox:focus-visible) {
+  outline: 1px solid #fff;
+  outline-offset: 1px;
+}
+
+.search-form__textfield:focus-visible {
+  outline: none;
+  border-bottom-color: #fff;
+}
+
+.button:hover {
+  text-decoration: underline;
+}
+
+.button:active {
+  background-color: #d9d9d9;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 2px;
+}
+
+.content__list-item:active {
+  background-color: #d9d9d9;
+}
+
+.content__list-item:hover {
+  text-decoration: underline;
+}
+
+.content__card-link {
+  display: block;
+}
+
+.content__card-link:focus {
+  outline: none;
+}
+
+.content__card-link:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Позиционирование прелоадеров */
+
+.result__video-container,
+.content__list-container {
+  position: relative;
 }
