@@ -82,13 +82,16 @@ a {
 .result__video-container {
   display: flex;
   flex-direction: column;
+  block-size: 386px;
+  inline-size: 711px;
 }
 
 /* Демонстрируемое видео */
 .result__video-container video {
   object-fit: cover;
-  block-size: 386px;
-  inline-size: 711px;
+  object-position: center; /* замечания учтено, способ позиционирования видео изменен */
+  inline-size: 100%;
+  block-size: 100%;
   cursor: pointer;
 }
 
@@ -99,7 +102,6 @@ a {
   align-self: stretch;
   justify-content: space-between;
   align-items: end;
-  column-gap: 0px;
 }
 
 /* Поля формы */
@@ -108,13 +110,14 @@ a {
   flex-direction: column;
   gap: 5px;
   align-items: flex-start;
-  width: 100%;
+  width: 95.5%; /* чтобы поля были одинаковой ширины с макетом */
   border: none;
   block-size: auto;
 }
 
 /* Модификация для второго поля формы */
-.search-form__fieldset:nth-of-type(2) {
+.search-form__fieldset:has(.search-form__checkbox-list) {
+  /* заменил на вариант чере has(чекбоксы). этот вариант позволяет изьежать вмешательство в HTML */
   padding-left: 30px;
   margin-bottom: 4px;
 }
@@ -132,21 +135,10 @@ a {
 
 /* Заголовок формы */
 .search-form__fieldset-title {
-  font-family: "Fira Sans Condensed", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.2;
-}
-
-/* Поле текстового ввода формы */
-.search-form__label {
-  width: 100%;
-  align-items: center;
-  flex-direction: row;
-  column-gap: 5px;
-  cursor: pointer;
-  color: #fff;
 }
 
 /* Декоратор тестового поля */
@@ -175,13 +167,14 @@ a {
   column-gap: 15px;
 }
 
-/* Метка чекбокса */
+/* Метка чекбокса и поле ввода города */
 .search-form__label {
   display: flex;
   align-items: center;
+  width: 100%;
   column-gap: 5px;
   cursor: pointer;
-}
+} /* убрал дубль */
 
 /* Скрытый чекбокс */
 .search-form__pseudo-checkbox {
@@ -219,7 +212,6 @@ a {
   font-size: 18px;
   cursor: pointer;
   display: flex;
-  align-items: end;
   justify-content: center;
 }
 
@@ -232,18 +224,14 @@ a {
   row-gap: 26px;
   justify-content: space-between;
   inline-size: 399px;
-  padding-top: 0;
 }
 
 /* Заголовок страницы */
 .title {
   font-family: "Oswald", sans-serif;
-  font-style: normal;
   font-size: 75px;
   line-height: 94%;
   text-transform: uppercase;
-  color: #fff;
-  font-weight: 700;
   transform: translateY(5px);
 }
 
@@ -297,7 +285,7 @@ a {
 .content__video-card-title {
   display: block;
   max-width: 196px;
-  font-family: "Oswald";
+  font-family: "Oswald", sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 30px;
@@ -314,12 +302,18 @@ a {
 .content__video-card-description {
   width: 196px; /* потом проверить */
   line-height: 16px;
-  font-family: "Fira Sans Condensed";
+  font-family: "Fira Sans Condensed", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   color: #fff;
   margin-top: 4px;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; /* IE не поддерживает */
+  line-clamp: 1; /* а тут еще Chrome ругается */
+  overflow: hidden;
 }
 
 /* Превью ролика */
@@ -349,8 +343,8 @@ a {
 
 /* Cостояния элементов */
 
-.search-form__checkbox-list .search-form__label:hover .search-form__label-text {
-  text-decoration: underline;
+.search-form__label:hover .search-form__label-text {
+  text-decoration: underline; /* вложенность исправлена */
 }
 
 .search-form__label:has(.search-form__textfield:focus-visible),
@@ -369,7 +363,7 @@ a {
 }
 
 .button:active {
-  background-color: #d9d9d9;
+  background-color: #545050;
 }
 
 .button:focus {
@@ -381,16 +375,12 @@ a {
   outline-offset: 2px;
 }
 
-.content__list-item:active {
-  background-color: #d9d9d9;
+.content__video-card:active {
+  background-color: #545050;
 }
 
-.content__list-item:hover {
+.content__video-card:hover {
   text-decoration: underline;
-}
-
-.content__card-link {
-  display: block;
 }
 
 .content__card-link:focus {
@@ -400,6 +390,10 @@ a {
 .content__card-link:focus-visible {
   outline: 1px solid #fff;
   outline-offset: 2px;
+}
+
+.content__card-link_current:active {
+  background-color: #545050;
 }
 
 /* Позиционирование прелоадеров */
