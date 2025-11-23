@@ -48,7 +48,7 @@ a {
 /* Стили для блока всей страницы */
 .page {
   inline-size: 1200px;
-  block-size: 100vh;
+  min-height: 100vh; /* Исправлено, но в масштабах экрана, ничего не пеняется */
   margin: 0 auto;
   color: #fff;
   font-family: "Fira Sans Condensed", sans-serif;
@@ -265,6 +265,12 @@ a {
   padding-inline: 3px;
 }
 
+/* Добавлено для задания блочного позиционирования */
+.content__card-link {
+  display: block;
+  text-decoration: none;
+}
+
 /* Карточка ролика */
 .content__video-card {
   display: flex;
@@ -311,8 +317,8 @@ a {
 
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1; /* IE не поддерживает */
-  line-clamp: 1; /* а тут еще Chrome ругается */
+  -webkit-line-clamp: 3; /* IE не поддерживает */
+  line-clamp: 3; /* а тут еще Chrome ругается */
   overflow: hidden;
 }
 
@@ -375,11 +381,13 @@ a {
   outline-offset: 2px;
 }
 
-.content__video-card:active {
+/* Перенес это состояние на уровень выше, как в замечаниях */
+.content__card-link:active {
   background-color: #545050;
 }
 
-.content__video-card:hover {
+/* Это тоже */
+.content__card-link:hover {
   text-decoration: underline;
 }
 
@@ -392,7 +400,8 @@ a {
   outline-offset: 2px;
 }
 
-.content__card-link_current:active {
+.content__card-link_current {
+  /* Исправлен класс для текущего выбранного ролика */
   background-color: #545050;
 }
 
